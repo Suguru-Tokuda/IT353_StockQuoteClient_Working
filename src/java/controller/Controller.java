@@ -17,11 +17,11 @@ import javax.faces.bean.SessionScoped;
 @ManagedBean
 @SessionScoped
 public class Controller {
-    @ManagedProperty("#{stockSym}")
+//    @ManagedProperty("#{stockSym}")
     private String stockSym;
-    @ManagedProperty("#{stockQuote}")
+//    @ManagedProperty("#{stockQuote}")
     private String stockQuote;
-    @ManagedProperty("#{time}")
+//    @ManagedProperty("#{time}")
     private String time;
 
     /**
