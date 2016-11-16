@@ -28,8 +28,8 @@
     </target>
     <target name="wsimport-client-StockQuote" depends="wsimport-init">
         <mkdir dir="${build.generated.dir}/jax-wsCache/StockQuote"/>
-        <wsimport sourcedestdir="${build.generated.dir}/jax-wsCache/StockQuote" destdir="${build.generated.dir}/jax-wsCache/StockQuote" wsdl="${basedir}/${conf-dir}xml-resources/web-service-references/StockQuote/wsdl/localhost_8080/StockQuoteWSSneh/StockQuote.wsdl" catalog="catalog.xml" encoding="${source.encoding}" extension="true" verbose="true" fork="false" wsdlLocation="http://localhost:8080/StockQuoteWSSneh/StockQuote?wsdl" xnocompile="true" xendorsed="true">
-            <depends file="${basedir}/${conf-dir}xml-resources/web-service-references/StockQuote/wsdl/localhost_8080/StockQuoteWSSneh/StockQuote.wsdl"/>
+        <wsimport sourcedestdir="${build.generated.dir}/jax-wsCache/StockQuote" destdir="${build.generated.dir}/jax-wsCache/StockQuote" wsdl="${basedir}/${conf-dir}xml-resources/web-service-references/StockQuote/wsdl/localhost_8080/IT353WS/StockQuote.wsdl" catalog="catalog.xml" encoding="${source.encoding}" extension="true" verbose="true" fork="false" wsdlLocation="http://localhost:8080/IT353WS/StockQuote?wsdl" xnocompile="true" xendorsed="true">
+            <depends file="${basedir}/${conf-dir}xml-resources/web-service-references/StockQuote/wsdl/localhost_8080/IT353WS/StockQuote.wsdl"/>
             <produces dir="${build.generated.dir}/jax-wsCache/StockQuote"/>
         </wsimport>
         <copy todir="${build.generated.sources.dir}/jax-ws">

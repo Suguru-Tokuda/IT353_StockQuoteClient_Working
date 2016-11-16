@@ -7,6 +7,7 @@ package controller;
 
 import java.time.LocalDateTime;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 
 /**
@@ -16,8 +17,11 @@ import javax.faces.bean.SessionScoped;
 @ManagedBean
 @SessionScoped
 public class Controller {
+    @ManagedProperty("#{stockSym}")
     private String stockSym;
+    @ManagedProperty("#{stockQuote}")
     private String stockQuote;
+    @ManagedProperty("#{time}")
     private String time;
 
     /**

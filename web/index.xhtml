@@ -2,13 +2,17 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
         <title>DOW Stocks</title>
     </h:head>
+    <f:metadata>
+        <f:viewParam name="stockSymbol" value="#{controller.stockSym}"/> 
+    </f:metadata> 
     <h:body>
         <h:form>
-        Stock Symbol :<h:inputText id="stockSymbol" value="#{controller.stockSym}"  ></h:inputText><br/>
+        Stock Symbol :<h:inputText id="stockSymbol" value="#{controller.stockSym}" /><br/>
         <h:outputText id="stockQuote" value="#{controller.stockQuote}" escape="true"/><br/>
         <p:poll interval="3" listener="#{controller.stockPoll()}" update="stockQuote" /><br/>
         <h:outputText id="time" value="#{controller.time}"/><br/><br/>
