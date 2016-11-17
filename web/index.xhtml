@@ -6,16 +6,19 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
         <title>DOW Stocks</title>
+        <style>
+            .button {
+                height: 30px;
+                width: 100px;
+                font-size: 80%;
+                background-color: #F4A460;
+            }
+        </style>
     </h:head>
     <h:body>
         <h:form>
-        Stock Symbol :<h:inputText id="stockSymbol" value="#{controller.stockSym}" /><br/>
-        <h:outputText id="stockQuote" value="#{controller.stockQuote}" escape="true"/><br/>
-        <p:poll interval="3" listener="#{controller.stockPoll()}" update="stockQuote" /><br/>
-        <h:outputText id="time" value="#{controller.time}"/><br/><br/>
-        <p:poll interval="3" listener="#{controller.stockPoll()}" update="time" />
+            Stock Symbol :<h:inputText id="stockSymbol" value="#{stockController.stockModel.stockSym}" /><br/>
+            <p:commandButton class="button" value="Get Quote" action="#{stockController.retrieveQuote()}"/>
         </h:form>
-        
     </h:body>
 </html>
-
