@@ -21,16 +21,19 @@ import model.StockModel;
 @ManagedBean
 @SessionScoped
 public class StockController implements Serializable {
-    
+
     private String response;
-    
-//    @ManagedProperty("#{stockModel}")
-    private StockModel stockModel = new StockModel();
+
+    @ManagedProperty("#{stockModel}")
+    private StockModel stockModel;
 
     /**
      * @return the stockModel
      */
     public StockModel getStockModel() {
+        if (stockModel == null) {
+            stockModel = new StockModel();
+        }
         return stockModel;
     }
 
@@ -40,10 +43,18 @@ public class StockController implements Serializable {
     public void setStockModel(StockModel stockModel) {
         this.stockModel = stockModel;
     }
-    
+
     public String updateQuoteAJAX() {
         String retVal = null;
-        retVal = getDowJonesStock(getStockModel().getStockSym());
+        try {
+            System.out.println("retVal before: " + retVal);
+            retVal = getDowJonesStock(getStockModel().getStockSym());
+            System.out.println("retVal after: " + retVal);
+        } catch (Exception e) {
+            System.out.println("Exception caught: " + e);
+            retVal = "";
+        }
+
         return retVal;
     }
 
@@ -59,10 +70,6 @@ public class StockController implements Serializable {
     }
 
     public String retrieveQuote() {
-        System.out.println("==========");
-        System.out.println("==========");
-        System.out.println("==========");
-        System.out.println("==========");
         String navi = null;
         getStockModel().setStockQuote(getDowJonesStock(getStockModel().getStockSym()));
         System.out.println("Server worked");
@@ -71,7 +78,7 @@ public class StockController implements Serializable {
         nav.performNavigation("response?faces-redirect=true");
         return navi;
     }
-    
+
     public String getBackToIndex() {
         String navi = null;
         FacesContext fc = FacesContext.getCurrentInstance();
@@ -81,16 +88,32 @@ public class StockController implements Serializable {
     }
 
     private static String getDowJonesStock(java.lang.String stockSymbol) {
+        String retVal = null;
         sq.StockQuote_Service service = new sq.StockQuote_Service();
         sq.StockQuote port = service.getStockQuotePort();
-        return port.getDowJonesStock(stockSymbol);
+        String quote = null;
+        try {
+            quote = port.getDowJonesStock(stockSymbol);
+        } catch (Exception ne) {
+            System.out.println("Here is a null pointer exception: " + ne);
+            quote = "";
+        }
+
+        retVal = quote;
+        return retVal;
     }
 
     /**
      * @return the response
      */
     public String getResponse() {
-        return updateQuoteAJAX();
+        String retVal = null;
+        try {
+            retVal = updateQuoteAJAX();
+        } catch (NullPointerException e) {
+            retVal = "";
+        }
+        return retVal;
     }
 
     /**
